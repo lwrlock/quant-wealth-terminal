@@ -1,0 +1,7 @@
+{
+  "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+  "authorized_chat_ids": [],
+  "enabled": false,
+  "daily_summary_hour": 21,
+  "last_update_id": 0
+}

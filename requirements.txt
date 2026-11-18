@@ -1,0 +1,6 @@
+fastapi>=0.110.0
+uvicorn>=0.28.0
+tefas-crawler>=0.6.0
+yfinance>=0.2.36
+requests>=2.31.0
+pandas>=2.0.0

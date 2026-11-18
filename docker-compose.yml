@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  finans-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finans-dashboard
+    # Asla arka planda kendi kendine (boot esnasında) açılmasın
+    restart: "no"
+    # Güvenlik Duvarı: Sadece localhost loopback'e bağla (Dış ağ/Yurt Wi-Fi erişimine kapalı)
+    ports:
+      - "127.0.0.1:8080:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - ENV=production
+    volumes:
+      - ./holdings.json:/app/holdings.json
+      - ./transactions.json:/app/transactions.json
+    # Kaynak & Bellek Koruması
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
